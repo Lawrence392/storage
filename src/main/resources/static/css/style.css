@@ -14,12 +14,13 @@ a span {
 
 /* 进度条样式 */
 .progress-bar-container {
-    width: 50%;
+    width: 30%;
     height: 7px;
     background-color: #ddd;
     /* margin-top: 10px; */
     text-align: center;
     border-radius: 5px;
+    margin-right: 1rem;
     /* 添加圆角 */
     /* justify-content: center; */
 }
@@ -28,9 +29,10 @@ a span {
     height: 100%;
     background-color: #4caf50;
     transition: width 0.5s ease-in-out;
-    border-radius: 5px;
     /* 添加圆角 */
-    width: 20%;
+    border-radius: 5px;
+    /* 默认 */
+    width: 0%;
 }
 
 .progress-bar-container.red .progress-bar {
@@ -41,8 +43,23 @@ a span {
     background-color: #ffc107;
 }
 
+/* remainingDays */
+span.remainingDays {
+    font-size: 16px;
+    width: 2rem;
+    text-align: center;
+    color: #959595;
+}
+span.units {
+    color: #959595;
+}
 
 
+a.dekete_button {
+    font-size: 16px;
+    width: 10%;
+    margin-right: 0;
+}
 
 li.divider {
     display: flex;
@@ -50,7 +67,6 @@ li.divider {
     justify-content: center;
     font-size: 1.5rem;
     text-align: center;
-    margin-top: 1rem;
     /* align-content: center; */
 }
 
@@ -69,13 +85,24 @@ input.submit_button {
 
 input#new-task {
     flex: 1;
-    height: 1.5rem;
-    /* color: black; */
     outline: none;
     border: 0px;
     border-bottom: 2px solid #ccc;
-
+    font-size: 14px;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #333;
+    display: inline-block;
     /* font-size: 16px; */
+    height: calc(2.25rem + 2px);
+    line-height: 1.5;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    vertical-align: middle;
+    width: 100%;
 }
 
 .new-task-form {
@@ -94,19 +121,27 @@ input#new-task {
 .new-task-form label {
     cursor: text;
     flex-shrink: 0;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 
 
 
 #deadline {
-    width: 32px;
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
-    padding: 10px 6px;
+    width: 130px;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #595959;
+    display: inline-block;
+    font-size: 14px;
+    height: calc(2.25rem + 2px);
+    line-height: 1.5;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    vertical-align: middle;
+    margin-right: 0.5rem;
 }
 .deadline {
     display: none;
@@ -121,7 +156,25 @@ label {
     font-size: 14px;
 }
 
+label.task_lable {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+
 label.deadline {
+    display: inline-block;
+    color: black;
+    margin: 0.6rem;
+}
+
+label.isComplete {
+    display: none;
+}
+
+input.isComplete {
     display: none;
 }
 
@@ -222,6 +275,10 @@ body {
     font-size: 16px;
     line-height: 1.5;
     background-color: rgb(245, 245, 247, 0.7);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container {
@@ -360,20 +417,6 @@ button:hover {
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 4rem;
-}
-
-/* 复选框样式 */
-.task input[type="checkbox"] {
-    /* align-items: center; */
-    /* justify-content: center; */
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-/* 标记完成的任务文本样式 */
-.task input[type="checkbox"]:checked+.text {
-    text-decoration: line-through;
-    color: #777;
 }
 
 /* 删除按钮样式 */

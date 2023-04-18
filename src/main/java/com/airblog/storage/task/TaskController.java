@@ -14,44 +14,44 @@ public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
 
-    @GetMapping("/tasks")
+    @GetMapping("/")
     public String getTasks(Model model) {
         List<Task> tasks = taskRepository.findAll();
         model.addAttribute("tasks", tasks);
-        return "/tasks/task";
+        return "/index";
     }
 
     @GetMapping("/tasks/new")
     public String newTask(Model model) {
         model.addAttribute("task", new Task());
-        return "/tasks/new_task";
+        return "/new_task";
     }
 
     @PostMapping("/tasks")
     public String addTask(@ModelAttribute Task task) {
         taskRepository.save(task);
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
     @GetMapping("/tasks/{id}/edit")
     public String editTask(@PathVariable Long id, Model model) {
         Optional<Task> task = taskRepository.findById(id);
         model.addAttribute("task", task.orElse(null));
-        return "/tasks/edit_task";
+        return "/edit_task";
     }
 
     @PostMapping("/tasks/{id}")
     public String updateTask(@PathVariable Long id, @ModelAttribute Task task) {
         task.setId(id);
         taskRepository.save(task);
-        return "redirect:/tasks/task";
+        return "redirect:/index";
     }
 
     @GetMapping("/tasks/{id}/delete")
     public String deleteTask(@PathVariable Long id) {
         Optional<Task> task = taskRepository.findById(id);
         task.ifPresent(taskRepository::delete);
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
 }

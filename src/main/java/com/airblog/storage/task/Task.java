@@ -1,5 +1,8 @@
 package com.airblog.storage.task;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +30,7 @@ public class Task {
 
     @Column(name = "isComplete", nullable = false)
     private Boolean isComplete;
+
 
     public Task() {
         this.name = null;
@@ -71,4 +75,11 @@ public class Task {
     public void setCompletion(boolean isComplete) {
         this.isComplete = isComplete;
     }
+
+    public long getRemainingDays() {
+        LocalDate deadlineDate = LocalDate.ofInstant(deadline.toInstant(), ZoneId.systemDefault());
+        LocalDate today = LocalDate.now();
+        return ChronoUnit.DAYS.between(today, deadlineDate);
+    }
+    
 }

@@ -26,7 +26,7 @@
                 <ul class="head_flex">
                     <li>
                         <a class="page_botton" href="#">
-                            Product
+                            Fruits
                         </a>
                     </li>
                     <li>
@@ -54,58 +54,45 @@
     <h1 class="title">My Fruits</h1>
     <form method="POST" action="/tasks">
         <div class="new-task-form" tabindex="0">
-            <label for="new-task">➕</label>
-            <input type="text" id="new-task" name="name" required autocomplete="off"  placeholder="Try typing 'apple'" title="Click to start adding fruit">
-            <label for="deadline" class="deadline">Deadline:</label>
+            <label for="new-task"></label>
+            <input type="text" id="new-task" name="name" required autocomplete="off"  placeholder="Type fruit">
+            
+            <label for="deadline" class="deadline"> - </label>
             <input type="date" id="deadline" name="deadline" required>
+            <label for="isComplete" class="isComplete">Complete:</label>
+            <input type="checkbox" id="isComplete" class="isComplete" name="isComplete">
             <input class="submit_button" type="submit" value="➡️">
         </div>
         <ul id="tasks">
             <li class="divider">Fruit in stock</li>
             <#--  list  -->
             <#list tasks as task>
-                <label title="Complete task">
-                    <input type="checkbox" value="nairsg957" class="box" title="Complete task">
-                    <span class="text">${task.name}</span>
-                </label>
-                <div class="progress-bar-container">
-                    <div class="progress-bar">
-                    </div>
-                </div>
-                ${task.deadline?string("yyyy-MM-dd")}
-                
-                <#--  binding button  -->
-                <button type="button" data-task="nairsg957" class="delete" title="Delete task">
-                    <a href="/tasks/${task.id}/delete">╳</a>
-                </button>
-            </#list>
-
-
 
             <li class="task">
-                <label title="Complete task">
-                    <input type="checkbox" value="nairsg957" class="box" title="Complete task">
-                    <span class="text">12</span>
+                <label class="task_lable" title="Complete task">
+                    <span class="text">${task.name}</span>
                 </label>
+
+
                 <div class="progress-bar-container">
-                    <div class="progress-bar">
+                    <div class="progress-bar" title="${task.getRemainingDays()}">
                     </div>
                 </div>
-                <button type="button" data-task="nairsg957" class="delete" title="Delete task">╳</button>
+
+                <#--  ${remainingDays}  -->
+                <span class="remainingDays">${task.getRemainingDays()}</span>
+                <span class="units">天</span>
+                <#--  binding button  -->
+                <a href="/tasks/${task.id}/delete" class="dekete_button">
+                <button type="button" data-task="nairsg957" class="delete" title="Delete task">
+                    ╳
+                </button>
+                </a>
             </li>
-
-
-                <li class="divider">Completed</li>
-                <li class="task completed">
-                <label title="Reopen task">
-                    <input type="checkbox" checked="" value="0ikhw5n3u" class="box" title="Reopen task">
-                    <span class="text">33232</span>
-                </label>
-                <button type="button" data-task="0ikhw5n3u" class="delete" title="Delete task">╳</button>
-                </li>
-            </ul>
-        </form>
-        
+            </#list>
+        </ul>
+    </form>
+    
 
     <#--  <script src="/js/to-do.js"></script>  -->
 
@@ -115,18 +102,22 @@
     const numTasks = progressBarContainers.length;
 
     for (let i = 0; i < numTasks; i++) {
-        //随机生成0到100之间的整数作为完成度
-        const percentComplete = Math.floor(Math.random() * 100);  
-        const container = progressBarContainers[i];
-        const progressBar = container.querySelector('.progress-bar');
 
+        const container = progressBarContainers[i];
+
+        const progressBar = container.querySelector('.progress-bar');
+        const divTitle = progressBar.title;
+
+        const percentComplete = parseFloat(divTitle);
         // 设置进度条宽度
-        progressBar.style.width = percentComplete + '%';
+        if (percentComplete > 0) {
+            progressBar.style.width = (percentComplete/20)*100 + '%';
+        }
 
        // 根据进度条宽度切换颜色 
-        if (percentComplete < 30) {
+        if (percentComplete/20 < 0.3) {
             container.classList.add('red');
-        } else if (percentComplete < 70) {
+        } else if (percentComplete/20 < 0.5) {
             container.classList.add('yellow');
         }
     }
