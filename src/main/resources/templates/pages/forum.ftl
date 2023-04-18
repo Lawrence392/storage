@@ -1,57 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<#import "../macros.ftl" as mymacro>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<@mymacro.head content="forum"/>
 
-    <title>论坛</title>
-    <link rel="stylesheet" href="forum.css">
+<#--  links  -->
 
-</head>
-
-<body>
-    <header>
-        <div class="head_container">
-            <!-- head logo -->
-            <div class="logo_flex">
-
-                <a href="/" class="logo">
-                    <img src="./assets/Iris.png" alt="Logo" class="logo">
-                    <span>Home Storage Hub</span>
-                </a>
-            </div>
-            <!-- pages-->
-            <div class="head_flex">
-                <ul class="head_flex">
-                    <li>
-                        <a class="page_botton" href="#">
-                            Product
-                        </a>
-                    </li>
-                    <li>
-                        <a class="page_botton" href="#">
-                            Calculator
-                        </a>
-                    </li>
-                    <li>
-                        <a class="page_botton" href="#">
-                            Clothes
-                        </a>
-                    </li>
-                    <li>
-                        <a class="page_botton" href="#">
-                            Bank
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- line -->
+<link rel="stylesheet" href="/css/forum.css">
 
 
-    </header>
+
+<@mymacro.connect/>
+<#--  body  -->
+
+
+
 	<h1>每日健康论坛</h1>
-
 
     <div class="container">
 		<div class="card">
@@ -89,5 +51,6 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
+
+<@mymacro.foot/>

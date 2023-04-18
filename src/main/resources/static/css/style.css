@@ -226,8 +226,13 @@ header {
 }
 
 a {
-    /* display: flex; */
-    /* justify-content: center; */
+    margin: 0 16px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+a.page_botton {
     margin: 0 16px;
     text-decoration: none;
     color: #444;
