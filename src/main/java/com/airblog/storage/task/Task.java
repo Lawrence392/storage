@@ -14,6 +14,70 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+class task2 {
+    private Long id;
+    private String name;
+    private Date deadline;
+    private Long shelf_life;
+
+    private void Deadlinesetting() {
+        LocalDate today = LocalDate.now();
+        LocalDate futureDate = today.plusDays(shelf_life);
+        Date deadline = Date.from(futureDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.deadline = deadline;
+    }
+
+    public long getRemainingDays() {
+        LocalDate deadlineDate = LocalDate.ofInstant(deadline.toInstant(), ZoneId.systemDefault());
+        LocalDate today = LocalDate.now();
+        return ChronoUnit.DAYS.between(today, deadlineDate);
+    }
+
+
+
+
+    public task2() {
+        this.name = null;
+        this.deadline = new Date();
+        Deadlinesetting();
+    }
+
+    public task2(String name, Boolean isComplete) {
+        this.name = name;
+        Deadlinesetting();
+        
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+    public Long getShelf_life() {
+        return shelf_life;
+    }
+    public void setShelf_life(Long shelf_life) {
+        this.shelf_life = shelf_life;
+    }
+}
+
+
+
+
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -30,7 +94,6 @@ public class Task {
 
     @Column(name = "isComplete", nullable = false)
     private Boolean isComplete;
-
 
     public Task() {
         this.name = null;

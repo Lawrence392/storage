@@ -11,15 +11,33 @@ import java.util.Optional;
 @RequestMapping("/fruits")
 public class TaskController {
 
+    // private final TaskService taskService;
+    // public TaskController(TaskService taskService) {
+    //     this.taskService = taskService;
+    // }
+
+
     @Autowired
     private TaskRepository taskRepository;
-
+    
     @GetMapping(value = { "/", "" })
     public String getTasks(Model model) {
         List<Task> tasks = taskRepository.findAll();
         model.addAttribute("tasks", tasks);
-        return "/pages/tasks";
+        return "/pages/tasks"; 
     }
+
+    // @GetMapping("test")
+    // public String getTasks2(Model model) {
+    //     List<Task> tasks = taskService.findShelf();
+    //     model.addAttribute("tasks", tasks);
+    //     return "/pages/tasks"; 
+
+    // }
+
+
+
+
 
     
     @PostMapping("/tasks")
@@ -53,5 +71,8 @@ public class TaskController {
         task.ifPresent(taskRepository::delete);
         return "redirect:/fruits";
     }
+
+
+
 
 }

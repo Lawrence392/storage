@@ -68,7 +68,9 @@
 
             const percentComplete = parseFloat(divTitle);
             // 设置进度条宽度
-            if (percentComplete > 0) {
+            if (percentComplete/20 > 1) {
+                progressBar.style.width = 100 + '%';
+            }  else if (percentComplete > 0) {
                 progressBar.style.width = (percentComplete/20)*100 + '%';
             }
 
