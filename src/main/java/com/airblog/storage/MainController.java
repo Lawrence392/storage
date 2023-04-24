@@ -30,11 +30,13 @@ public class MainController {
     public String toPagesForum(Model model) {
         return "redirect:/forum";
     }
+    @GetMapping("/link/calculator")
+    public String toPagesCalculator(Model model) {
+        return "redirect:/calculator";
+    }
+    @GetMapping("/link/chat")
+    public String toPagesChat(Model model) {
+        return "redirect:/chat";
+    }
 
-
-
-
-
-
-    
 }

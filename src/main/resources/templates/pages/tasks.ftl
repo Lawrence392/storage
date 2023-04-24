@@ -1,14 +1,17 @@
 <#import "../macros.ftl" as task>
 
-<@task.head content="task"/>
+<@task.head content="essentials"/>
 
 
 <#--  links  -->
+<link rel="stylesheet" href="/css/tasks.css">
+            <!-- pages-->
 
 <@task.connect/>
 <#--  body  -->
+    <#include "../pagelist.ftl"/>
 
-    <h1 class="title">My Fruits</h1>
+    <h1 class="title">Add essential</h1>
     <form method="POST" action="/fruits/tasks">
         <div class="new-task-form" tabindex="0">
             <label for="new-task"></label>
@@ -16,12 +19,12 @@
             
             <label for="deadline" class="deadline"> - </label>
             <input type="date" id="deadline" name="deadline" required>
-            <label for="isComplete" class="isComplete">Complete:</label>
-            <input type="checkbox" id="isComplete" class="isComplete" name="isComplete">
+            <#--  <label for="isComplete" class="isComplete">Complete:</label>
+            <input type="checkbox" id="isComplete" class="isComplete" name="isComplete">  -->
             <input class="submit_button" type="submit" value="➡️">
         </div>
         <ul id="tasks">
-            <li class="divider">Fruit in stock</li>
+            <li class="divider">Essentials in stock</li>
             <#--  list  -->
             <#list tasks as task>
 
@@ -48,11 +51,31 @@
             </li>
             </#list>
         </ul>
+
+
+
+
     </form>
     
-
-
-
+<#--  button.modern-button {
+    background-color: #aa6de2;
+    color: white;
+    border-radius: 10px;
+    /* padding: 10px 20px; */
+    font-size: 14px;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* width: 46%; */
+    width: 45%;
+    height: 30px;
+    margin-right: 1.5rem;
+}  -->
+<#--  <button class="modern-button">
+                    Go shopping
+                </button>  -->
 <#--  javascript  -->
 
     <script>

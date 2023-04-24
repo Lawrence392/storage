@@ -1,6 +1,6 @@
 <#import "../macros.ftl" as mymacro>
 
-<@mymacro.head content="mymacro"/>
+<@mymacro.head content="calculator"/>
 
 
 <#--  links  -->
@@ -9,8 +9,10 @@
 
 <@mymacro.connect/>
 <#--  body  -->
+    <#include "../pagelist.ftl"/>
+
     <h1>热量计算器</h1>
-    <form>
+    <form class="calculator_flex">
       <div class="form-group">
         <label for="food-type">水果种类</label>
         <input type="text" id="food-type" name="food-type" required>

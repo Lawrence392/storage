@@ -5,6 +5,7 @@
 
 <#--  links  -->
 <link rel="stylesheet" href="/">
+<#--  header  -->
 
 
 <@home.connect/>
@@ -12,8 +13,6 @@
 
 
 
-
-hello world!
 
 
 

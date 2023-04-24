@@ -79,7 +79,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "fruits")
 public class Task {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -92,20 +92,25 @@ public class Task {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
 
-    @Column(name = "isComplete", nullable = false)
-    private Boolean isComplete;
+    // @Column(name = "isComplete", nullable = false)
+    // private Boolean isComplete;
 
     public Task() {
         this.name = null;
         this.deadline = new Date();
-        this.isComplete = false;
+        // this.isComplete = false;
     }
-
-    public Task(String name, Date deadline, Boolean isComplete) {
+    public Task(String name, Date deadline) {
         this.name = name;
         this.deadline = deadline;
-        this.isComplete = isComplete;
+        // this.isComplete = isComplete;
     }
+
+    // public Task(String name, Date deadline, Boolean isComplete) {
+    //     this.name = name;
+    //     this.deadline = deadline;
+    //     // this.isComplete = isComplete;
+    // }
 
     public Long getId() {
         return id;
@@ -131,13 +136,13 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public boolean isCompletion() {
-        return isComplete;
-    }
+    // public boolean isCompletion() {
+    //     return isComplete;
+    // }
 
-    public void setCompletion(boolean isComplete) {
-        this.isComplete = isComplete;
-    }
+    // public void setCompletion(boolean isComplete) {
+    //     this.isComplete = isComplete;
+    // }
 
     public long getRemainingDays() {
         LocalDate deadlineDate = LocalDate.ofInstant(deadline.toInstant(), ZoneId.systemDefault());
